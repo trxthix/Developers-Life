@@ -2,7 +2,6 @@ package com.github.trxthix.developerslife.ui.category
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.github.trxthix.developerslife.data.Post
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_post.*

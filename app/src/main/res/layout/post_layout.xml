@@ -34,7 +34,7 @@
         android:layout_marginTop="@dimen/spacing_small"
         android:adjustViewBounds="true"
         android:contentDescription="@string/content_description_post_image"
-        tools:src="@drawable/ic_repost" />
+        tools:src="@drawable/ic_share" />
 
     <TextView
         android:id="@+id/_postDescription"

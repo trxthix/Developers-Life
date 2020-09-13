@@ -41,6 +41,12 @@ buildscript {
         paginVersion = "3.0.0-alpha07"
 
         daggerVersion = "2.28.1"
+
+        junitVersion = "4.13"
+        mockitoVersion = "3.3.1"
+        mockitoInlineVersion = "3.2.4"
+        archCoreTestingVersion = "2.1.0"
+        androidxJunitVersion = "1.1.2"
     }
 
     repositories {
