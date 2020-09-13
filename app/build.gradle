@@ -90,4 +90,5 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$mockitoInlineVersion"
     testImplementation "androidx.arch.core:core-testing:$archCoreTestingVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    testImplementation 'org.mockito:mockito-core:3.3.1'
 }
