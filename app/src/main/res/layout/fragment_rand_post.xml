@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_small"
+    tools:context=".ui.rand.RandPostFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/post_corners"
+        app:cardElevation="@dimen/post_elevation">
+
+        <ViewAnimator
+            android:id="@+id/viewAnimator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.github.trxthix.developerslife.ui.common.PostView
+                android:id="@+id/postView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <include layout="@layout/include_error_layout" />
+        </ViewAnimator>
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btnPrevious"
+            android:layout_width="@dimen/control_button_size"
+            android:layout_height="@dimen/control_button_size"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/btn_previous"
+            android:focusable="true"
+            android:src="@drawable/ic_arrow_left" />
+
+        <ImageView
+            android:id="@+id/btnNext"
+            android:layout_width="@dimen/control_button_size"
+            android:layout_height="@dimen/control_button_size"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/btn_next"
+            android:focusable="true"
+            android:src="@drawable/ic_arrow_right" />
+    </LinearLayout>
+</LinearLayout>

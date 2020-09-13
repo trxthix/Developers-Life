@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Developers Life</string>
+
+    <string name="content_description_avatar">Profile Image</string>
+    <string name="content_description_post_image">Post Image</string>
+    <string name="content_description_post_img">GIF поста</string>
+
+    <string name="title_rand">Рандом</string>
+    <string name="title_latest">Последние</string>
+    <string name="title_top">Лучшие</string>
+    <string name="title_hot">Горячие</string>
+
+    <string name="msg_connection_error">Произошла ошибка при загрузке данных. Проверьте подключение к сети</string>
+
+    <string name="btn_retry">Повторить</string>
+    <string name="btn_previous">Предыдущий</string>
+    <string name="btn_next">Следующий</string>
+</resources>

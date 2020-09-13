@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  т.к. только с API 23+ доступен light status bar  -->
+    <color name="colorPrimaryDark">#eeeeee</color>
+</resources>

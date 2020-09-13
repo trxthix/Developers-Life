@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="com.github.trxthix.developerslife.ui.common.PostView">
+
+    <TextView
+        android:id="@+id/_author"
+        style="?attr/textAppearanceHeadline6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/post_layout_spacing"
+        android:gravity="center"
+        android:maxLines="1"
+        tools:text="Author" />
+
+    <TextView
+        android:id="@+id/_dateTime"
+        style="?attr/textAppearanceSubtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:gravity="center"
+        android:maxLines="1"
+        tools:text="12 minutes ago" />
+
+    <ImageView
+        android:id="@+id/_postImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/content_description_post_image"
+        tools:src="@drawable/ic_repost" />
+
+    <TextView
+        android:id="@+id/_postDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/title_gradient"
+        android:gravity="bottom|center"
+        android:minHeight="@dimen/post_title_min_height"
+        android:padding="@dimen/spacing_small"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/white"
+        tools:text="@tools:sample/first_names" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/_votesCount"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:minHeight="0dp"
+        android:padding="@dimen/post_layout_spacing"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:textColor="?android:attr/textColorSecondary"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/ic_like"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/spacing_small"
+        app:iconTint="?android:attr/colorControlNormal" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/_commentsCount"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:minHeight="0dp"
+        android:padding="@dimen/post_layout_spacing"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:textColor="?android:attr/textColorSecondary"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/ic_comment"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/spacing_small"
+        app:iconTint="?android:attr/colorControlNormal" />
+</merge>
