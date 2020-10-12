@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.updateLayoutParams
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -78,14 +79,12 @@ class PostView @JvmOverloads constructor(
 
         //Author
         measureChildWithMargins(authorTextView, widthMeasureSpec, 0, heightMeasureSpec, 0)
-        val authorHeight =
-            authorTextView.measuredHeight + authorParams.topMargin + authorParams.bottomMargin
+        val authorHeight = authorTextView.measuredHeight + authorParams.topMargin + authorParams.bottomMargin
         totalHeight += authorHeight
 
         //DateTime
         measureChildWithMargins(dateTextView, widthMeasureSpec, 0, heightMeasureSpec, 0)
-        val dateTimeHeight =
-            dateTextView.measuredHeight + dateTimeParams.topMargin + dateTimeParams.bottomMargin
+        val dateTimeHeight = dateTextView.measuredHeight + dateTimeParams.topMargin + dateTimeParams.bottomMargin
         totalHeight += dateTimeHeight
 
         //Buttons
@@ -95,10 +94,8 @@ class PostView @JvmOverloads constructor(
         measureChildWithMargins(btnVotesCount, buttonMeasureSpec, 0, heightMeasureSpec, 0)
         measureChildWithMargins(bthCommentsCount, buttonMeasureSpec, 0, heightMeasureSpec, 0)
 
-        val btnVotesHeight =
-            btnVotesCount.measuredHeight + votesParams.topMargin + votesParams.bottomMargin
-        val btnCommentsHeight =
-            bthCommentsCount.measuredHeight + commentsParams.topMargin + commentsParams.bottomMargin
+        val btnVotesHeight = btnVotesCount.measuredHeight + votesParams.topMargin + votesParams.bottomMargin
+        val btnCommentsHeight = bthCommentsCount.measuredHeight + commentsParams.topMargin + commentsParams.bottomMargin
 
         totalHeight += max(btnVotesHeight, btnCommentsHeight)
 
@@ -116,13 +113,7 @@ class PostView @JvmOverloads constructor(
             else -> heightMeasureSpec
         }
 
-        measureChildWithMargins(
-            descriptionTextView,
-            widthMeasureSpec,
-            0,
-            contentHeightMeasureSpec,
-            0
-        )
+        measureChildWithMargins(descriptionTextView, widthMeasureSpec, 0, contentHeightMeasureSpec, 0)
         measureChildWithMargins(imageView, widthMeasureSpec, 0, contentHeightMeasureSpec, 0)
 
         val descriptionHeight =
@@ -218,6 +209,7 @@ class PostView @JvmOverloads constructor(
             .load(post.getImage())
             .transition(DrawableTransitionOptions().crossFade())
             .transform(FitCenter())
+            .placeholder(R.drawable.ic_place_holder)
             .addListener(glideRequestListener)
             .into(imageView)
     }

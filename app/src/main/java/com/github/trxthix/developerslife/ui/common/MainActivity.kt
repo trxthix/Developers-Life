@@ -12,7 +12,7 @@ import com.github.trxthix.developerslife.ui.category.PostCategoryFragment
 import com.github.trxthix.developerslife.ui.rand.RandPostFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-private const val FRAG_COUNT = 2
+private const val FRAG_COUNT = 3
 private const val POSITION_RAND = 0
 private const val POSITION_LATEST = 1
 private const val POSITION_TOP = 2

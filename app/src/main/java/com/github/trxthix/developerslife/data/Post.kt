@@ -14,7 +14,9 @@ data class Post(
     val gifURL: String?,
     val previewURL: String,
     val votes: Int,
-    val commentsCount: Int
+    val commentsCount: Int,
+    val width: Int,
+    val height: Int
 ) {
     fun getImage(): String = gifURL ?: previewURL
 }
