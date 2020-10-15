@@ -7,7 +7,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
-import com.bumptech.glide.Glide
 import com.github.trxthix.developerslife.App
 import com.github.trxthix.developerslife.R
 import com.github.trxthix.developerslife.data.PostCategory
@@ -75,18 +74,6 @@ class PostCategoryFragment : Fragment(R.layout.fragment_post_category) {
     private fun getItemOffset(): Rect {
         val spacing = requireContext().resources.getDimensionPixelSize(R.dimen.spacing_small)
         return Rect(spacing, spacing, spacing, spacing)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Glide.with(this)
-            .resumeRequests()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Glide.with(this)
-            .pauseRequests()
     }
 
     companion object {
