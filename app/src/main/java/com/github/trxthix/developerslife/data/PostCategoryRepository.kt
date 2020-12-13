@@ -7,35 +7,33 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-/**
- * Репозиторий для постраничной загрузки постов
- */
+private const val PAGE_OFFSET = 1
+
 @AppSingleton
-class PostsCategoriesRepository @Inject constructor(
+class PostCategoryRepository @Inject constructor(
     private val api: DevLifeApi
 ) {
     fun getLatest(page: Int): Single<LoadResult<Int, Post>> {
-        return api.latest(page)
+        return api.latestPosts(page)
             .map { toLoadResult(page, it.result) }
             .onErrorReturn(this::toLoadError)
             .subscribeOn(Schedulers.io())
     }
 
     fun getTop(page: Int): Single<LoadResult<Int, Post>> {
-        return api.top(page)
+        return api.topPosts(page)
             .map { toLoadResult(page, it.result) }
             .onErrorReturn(this::toLoadError)
             .subscribeOn(Schedulers.io())
     }
 
-    private fun toLoadResult(page: Int, data: List<Post>): LoadResult<Int, Post> {
-        return LoadResult.Page(data, getPreviousPageKey(page), getNextPageKey(data, page))
-    }
+    private fun toLoadResult(page: Int, data: List<Post>): LoadResult<Int, Post> =
+        LoadResult.Page(data, getPreviousPageKey(page), getNextPageKey(data, page))
 
     private fun getNextPageKey(data: List<Post>, currentPage: Int) =
-        if (data.isEmpty()) null else currentPage + 1
+        if (data.isEmpty()) null else currentPage + PAGE_OFFSET
 
-    private fun getPreviousPageKey(page: Int) = if (page == 0) null else page - 1
+    private fun getPreviousPageKey(page: Int) = if (page == 0) null else page - PAGE_OFFSET
 
     private fun toLoadError(t: Throwable): LoadResult<Int, Post> {
         Timber.e(t)

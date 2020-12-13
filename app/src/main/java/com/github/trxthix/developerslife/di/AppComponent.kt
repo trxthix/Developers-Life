@@ -1,16 +1,12 @@
+@file:Suppress("unused")
+
 package com.github.trxthix.developerslife.di
 
 import android.content.Context
+import com.github.trxthix.developerslife.util.ConnectivityMonitor
 import com.github.trxthix.developerslife.util.ViewModelFactory
 import dagger.BindsInstance
 import dagger.Component
-import javax.inject.Scope
-
-
-@Scope
-@MustBeDocumented
-@Retention(AnnotationRetention.RUNTIME)
-annotation class AppSingleton
 
 @AppSingleton
 @Component(
@@ -20,10 +16,11 @@ annotation class AppSingleton
     ]
 )
 interface AppComponent {
+    fun getConnectivityMonitor(): ConnectivityMonitor
+    fun getViewModelFactory(): ViewModelFactory
+
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance appContext: Context): AppComponent
     }
-
-    fun getViewModelFactory(): ViewModelFactory
 }

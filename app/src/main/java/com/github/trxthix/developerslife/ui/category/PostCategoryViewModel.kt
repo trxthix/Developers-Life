@@ -9,14 +9,19 @@ import androidx.paging.rxjava2.cachedIn
 import androidx.paging.rxjava2.flowable
 import com.github.trxthix.developerslife.data.Post
 import com.github.trxthix.developerslife.data.PostCategory
-import com.github.trxthix.developerslife.data.PostPagingSource
-import com.github.trxthix.developerslife.data.PostsCategoriesRepository
+import com.github.trxthix.developerslife.data.PostCategoryPagingSource
+import com.github.trxthix.developerslife.data.PostCategoryRepository
 import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
+private const val PAGE_SIZE = 15
+private const val PREFETCH_DISTANCE = 5
+private const val INITIAL_KEY = 0
+private const val MAX_SIZE = 500
+
 class PostCategoryViewModel @Inject constructor(
-    private val postsCategoriesRepository: PostsCategoriesRepository
+    private val postCategoryRepository: PostCategoryRepository
 ) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
 
@@ -42,16 +47,9 @@ class PostCategoryViewModel @Inject constructor(
         val pagingConfig = PagingConfig(PAGE_SIZE, PREFETCH_DISTANCE, maxSize = MAX_SIZE)
         pager = Pager(pagingConfig, INITIAL_KEY) {
             /* paging source factory */
-            PostPagingSource(postsCategoriesRepository, category)
+            PostCategoryPagingSource(postCategoryRepository, category)
         }
         postPagination = pager.flowable.cachedIn(viewModelScope)
-    }
-
-    private companion object {
-        const val PAGE_SIZE = 15
-        const val PREFETCH_DISTANCE = 5
-        const val INITIAL_KEY = 0
-        const val MAX_SIZE = 500
     }
 }
 

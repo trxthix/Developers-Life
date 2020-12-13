@@ -6,10 +6,13 @@ import com.github.trxthix.developerslife.data.Post
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_post.*
 
-class PostViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
+class PostViewHolder(
+    override val containerView: View
+) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
+
     fun clear() {
-        postView.clearImage()
+        postView.clearView()
     }
 
     fun bind(post: Post) {

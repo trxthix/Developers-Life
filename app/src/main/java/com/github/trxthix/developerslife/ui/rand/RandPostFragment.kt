@@ -17,14 +17,17 @@ private const val CHILD_PROGRESS_BAR = 1
 private const val CHILD_ERROR_LAYOUT = 2
 
 class RandPostFragment : Fragment(R.layout.fragment_rand_post) {
-    private val viewModel by viewModels<RandPostViewModel> {
-        App.appComponent.getViewModelFactory()
-    }
+    private val connectivityMonitor by lazy(
+        LazyThreadSafetyMode.NONE,
+        App.appComponent::getConnectivityMonitor
+    )
+    private val viewModel by viewModels<RandPostViewModel>(factoryProducer = App.appComponent::getViewModelFactory)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         observeViewModel()
+        observeNetworkState()
         viewModel.getCurrentPost()
     }
 
@@ -40,14 +43,6 @@ class RandPostFragment : Fragment(R.layout.fragment_rand_post) {
         btnRetry.setOnClickListener {
             viewModel.retry()
         }
-
-        postView.imageLoadListener = { isSuccess ->
-            if (isSuccess) {
-                viewAnimator.displayedChild = CHILD_POST_VIEW
-            } else {
-                viewAnimator.displayedChild = CHILD_ERROR_LAYOUT
-            }
-        }
     }
 
     private fun observeViewModel() {
@@ -58,11 +53,22 @@ class RandPostFragment : Fragment(R.layout.fragment_rand_post) {
         viewModel.state.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is Loading -> viewAnimator.displayedChild = CHILD_PROGRESS_BAR
-                is Success -> postView.bind(state.post)
+                is Success -> {
+                    viewAnimator.displayedChild = CHILD_POST_VIEW
+                    postView.bind(state.post)
+                }
                 is Error -> {
                     Timber.e(state.exception)
                     viewAnimator.displayedChild = CHILD_ERROR_LAYOUT
                 }
+            }
+        })
+    }
+
+    private fun observeNetworkState() {
+        connectivityMonitor.onNetworkAvailable.observe(viewLifecycleOwner, Observer { hasNetwork ->
+            if (hasNetwork) {
+                viewModel.retry()
             }
         })
     }

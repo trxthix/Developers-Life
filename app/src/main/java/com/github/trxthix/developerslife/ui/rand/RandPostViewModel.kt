@@ -35,7 +35,9 @@ class RandPostViewModel @Inject constructor(
     }
 
     fun retry() {
-        loadPost(randPostRepository.currentPost())
+        if (state.value is Error) {
+            loadPost(randPostRepository.nextPost())
+        }
     }
 
     fun getCurrentPost() {

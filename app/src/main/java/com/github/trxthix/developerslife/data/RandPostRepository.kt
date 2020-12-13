@@ -37,7 +37,7 @@ class RandPostRepository @Inject constructor(
             Observable.just(memoryCache.next())
                 .doOnNext { _hasPreviousPost.postValue(memoryCache.hasPrevious()) }
         } else {
-            api.rand()
+            api.randPost()
                 .doOnNext {
                     memoryCache.add(it)
                     _hasPreviousPost.postValue(memoryCache.hasPrevious())

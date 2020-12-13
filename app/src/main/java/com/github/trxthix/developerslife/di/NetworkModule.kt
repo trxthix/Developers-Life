@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.github.trxthix.developerslife.di
 
 import com.github.trxthix.developerslife.BuildConfig
@@ -14,13 +16,15 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 private const val BASE_URL = "https://developerslife.ru/"
+private const val MAX_REQUESTS = 2
 
 @Module
 interface NetworkModule {
     companion object {
         @AppSingleton
         @Provides
-        fun provideApi(retrofit: Retrofit): DevLifeApi = retrofit.create(DevLifeApi::class.java)
+        fun provideDevLifeApi(retrofit: Retrofit): DevLifeApi =
+            retrofit.create(DevLifeApi::class.java)
 
         @Provides
         fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder().run {
@@ -48,7 +52,7 @@ interface NetworkModule {
 
         @Provides
         fun provideOkHttpDispatcher(): Dispatcher = Dispatcher().apply {
-            maxRequests = 2
+            maxRequests = MAX_REQUESTS
         }
     }
 }

@@ -25,9 +25,7 @@ class RandPostViewModelTest {
     @Before
     fun setUp() {
         randPostRepository = mock(RandPostRepository::class.java)
-        viewModel = RandPostViewModel(
-            randPostRepository
-        )
+        viewModel = RandPostViewModel(randPostRepository)
 
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         RxAndroidPlugins.setMainThreadSchedulerHandler { Schedulers.trampoline() }
@@ -38,6 +36,8 @@ class RandPostViewModelTest {
         val observable = Observable.just(DummyPosts.ONE)
         `when`(randPostRepository.previousPost())
             .thenReturn(observable)
+
+        viewModel.onPreviousPostClick()
 
         assertEquals(
             viewModel.state.getOrAwaitValue(),
@@ -65,7 +65,10 @@ class RandPostViewModelTest {
 
         viewModel.onNextPostClick()
 
-        assertEquals(viewModel.state.getOrAwaitValue(), RandPostViewModel.State.Success(DummyPosts.ONE))
+        assertEquals(
+            viewModel.state.getOrAwaitValue(),
+            RandPostViewModel.State.Success(DummyPosts.ONE)
+        )
     }
 
     @Test
@@ -106,14 +109,4 @@ class RandPostViewModelTest {
         assertEquals(viewModel.state.getOrAwaitValue(), RandPostViewModel.State.Error(exception))
     }
 
-    @Test
-    fun `retry()`(){
-        val observable = Observable.just(DummyPosts.ONE)
-        `when`(randPostRepository.currentPost())
-            .thenReturn(observable)
-
-        viewModel.retry()
-
-        assertEquals(viewModel.state.getOrAwaitValue(), RandPostViewModel.State.Success(DummyPosts.ONE))
-    }
 }

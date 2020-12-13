@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.github.trxthix.developerslife.di
 
 import androidx.lifecycle.ViewModel
@@ -14,16 +16,15 @@ import kotlin.reflect.KClass
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ViewModelKey(val value: KClass<out ViewModel>)
 
-@Suppress("unused")
 @Module
 interface ViewModelModule {
     @IntoMap
     @Binds
     @ViewModelKey(RandPostViewModel::class)
-    fun provideLocationsViewModel(viewModel: RandPostViewModel): ViewModel
+    fun provideRandPostViewModel(viewModel: RandPostViewModel): ViewModel
 
     @IntoMap
     @Binds
     @ViewModelKey(PostCategoryViewModel::class)
-    fun provideSearchViewModel(viewModel: PostCategoryViewModel): ViewModel
+    fun providePostCategoryViewModel(viewModel: PostCategoryViewModel): ViewModel
 }

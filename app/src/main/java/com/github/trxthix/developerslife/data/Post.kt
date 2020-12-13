@@ -3,9 +3,6 @@ package com.github.trxthix.developerslife.data
 import androidx.annotation.Keep
 
 @Keep
-data class PostResult(val result: List<Post>)
-
-@Keep
 data class Post(
     val id: Long,
     val date: String,
@@ -18,5 +15,5 @@ data class Post(
     val width: Int,
     val height: Int
 ) {
-    fun getImage(): String = gifURL ?: previewURL
+    fun getPostImage(): String = gifURL ?: previewURL
 }

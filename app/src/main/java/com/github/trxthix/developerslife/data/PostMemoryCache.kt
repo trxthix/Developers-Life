@@ -3,11 +3,6 @@ package com.github.trxthix.developerslife.data
 import com.github.trxthix.developerslife.di.AppSingleton
 import javax.inject.Inject
 
-/**
- * Кэш в памяти, схожий по принципу работа с [Iterator], но
- * с немного другой логикой индекса
- */
-
 @AppSingleton
 class PostMemoryCache @Inject constructor() {
     private val list = mutableListOf<Post>()

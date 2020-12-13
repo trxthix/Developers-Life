@@ -5,7 +5,8 @@ import androidx.lifecycle.LifecycleOwner
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-private class LifecycleDisposable(obj: Disposable) : DefaultLifecycleObserver, Disposable by obj {
+private class LifecycleDisposable(disposable: Disposable) : DefaultLifecycleObserver,
+    Disposable by disposable {
     override fun onDestroy(owner: LifecycleOwner) {
         super.onDestroy(owner)
         if (!isDisposed) {

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.github.trxthix.developerslife.R
 import com.github.trxthix.developerslife.data.Post
 
-class PagingPostAdapter : PagingDataAdapter<Post, PostViewHolder>(DIFF_CALLBACK) {
+class PagingAdapter : PagingDataAdapter<Post, PostViewHolder>(DIFF_CALLBACK) {
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         getItem(position)?.let(holder::bind)
     }
