@@ -70,9 +70,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
 
-    //ViewBinding helper
-    implementation "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:$viewBindingDelegateVersion"
-
     //Logger
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
